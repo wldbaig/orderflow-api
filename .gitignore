@@ -1,0 +1,23 @@
+# Build output
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+artifacts/
+
+# Rider / VS
+.vs/
+.idea/
+*.user
+
+# EF / local
+*.mdf
+*.ldf
+
+# Secrets — never commit real keys/connection strings
+secrets.json
+appsettings.*.local.json
+
+# OS
+.DS_Store
+Thumbs.db

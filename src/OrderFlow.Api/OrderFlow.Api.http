@@ -1,0 +1,50 @@
+@host = http://localhost:5080
+
+### List orders — paged, sorted by total amount desc
+GET {{host}}/api/orders?Page=1&PageSize=10&SortBy=TotalAmount&SortDescending=true
+
+### List orders — high priority, confirmed
+GET {{host}}/api/orders?Priority=High&Status=Confirmed&PageSize=10
+
+### Create an order (AI analyses the instructions during intake)
+POST {{host}}/api/orders
+Content-Type: application/json
+
+{
+  "customerName": "Acme Corp",
+  "customerReference": "PO-9911",
+  "specialInstructions": "URGENT - need same day delivery, customer will pay cash on delivery.",
+  "lines": [
+    { "productSku": "SKU-0001", "productName": "Standard Bolt", "quantity": 1500, "unitPrice": 3.50 },
+    { "productSku": "SKU-0002", "productName": "Heavy-Duty Tape", "quantity": 10, "unitPrice": 8.00 }
+  ]
+}
+
+### Get order by id (replace the guid)
+GET {{host}}/api/orders/00000000-0000-0000-0000-000000000000
+
+### Cancel an order (allowed only while Pending)
+POST {{host}}/api/orders/00000000-0000-0000-0000-000000000000/cancel
+
+### Natural-language search (AI → validated filters → same safe query)
+POST {{host}}/api/orders/search-nl
+Content-Type: application/json
+
+{
+  "phrase": "high priority orders from last week over 500 units, largest first",
+  "pageSize": 10
+}
+
+### Product catalog (cached)
+GET {{host}}/api/products
+
+### Add a product (invalidates the catalog cache)
+POST {{host}}/api/products
+Content-Type: application/json
+
+{
+  "sku": "SKU-9001",
+  "name": "Premium Sealant",
+  "category": "Adhesives",
+  "unitPrice": 19.99
+}
