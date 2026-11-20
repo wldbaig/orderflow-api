@@ -62,7 +62,7 @@ state it, and proceed. Never invent config keys or framework behavior.
 
 ## Definition of done
 
-- [ ] Requested behavior implemented (and covered by tests once a test project exists).
+- [ ] Requested behavior implemented and covered by unit tests.
 - [ ] `dotnet build OrderFlow.sln -c Release` green, no new warnings.
 - [ ] No duplication; existing patterns reused.
 - [ ] No dead code, stray scope, or suppressed warnings.

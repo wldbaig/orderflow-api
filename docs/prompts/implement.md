@@ -29,8 +29,8 @@
 
 ## 4. Test
 
-- Add tests for the behavior once a test project exists; at minimum cover aggregate invariants and validator rules.
-- Otherwise, exercise the endpoint via the `.http` file against a local run and say so in the PR.
+- Add unit tests in `tests/OrderFlow.UnitTests` (mirror the `src` folder): aggregate invariants, validator rules, handler branches (NSubstitute), read paths (EF Core InMemory).
+- For new endpoints, also exercise them via the `.http` file against a local run.
 
 ## 5. Finish
 
