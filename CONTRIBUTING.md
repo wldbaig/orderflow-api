@@ -17,5 +17,5 @@
 If you touch `OrderReadService`, indexes or caching, re-run `tools/OrderFlow.Benchmark`
 and update `PERFORMANCE.md` with the new numbers.
 
-## Working with Claude
-See `CLAUDE.md` for the conventions coding agents follow in this repo.
+## Working with AI agents
+Coding agents follow `AGENTS.md` and the rules in `docs/` (`CLAUDE.md` defers to it).
