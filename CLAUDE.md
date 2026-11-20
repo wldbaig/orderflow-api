@@ -34,7 +34,7 @@
 - Do not introduce a new NuGet package unless the task genuinely requires it and no existing dependency already provides the capability.
 - Do not change public contracts, database schema, migrations, API routes, the `ApiResponse` envelope, or configuration keys (`ConnectionStrings:Default`, `Ai:*`, `Database:*`) unless required by the task.
 - When changing DTOs, request contracts, or shared models, search for all consumers before editing them.
-- When adding or changing behavior, add tests if a test project covers that area (none exists yet — see "Project facts").
+- When adding or changing behavior, add or update unit tests in `tests/OrderFlow.UnitTests` (mirror the `src` folder of the code under test).
 - Do not weaken or delete tests merely to make a change pass.
 - Never add secrets, API keys, passwords, or connection strings with credentials to source control. Use user-secrets or environment variables.
 - If requirements conflict with the current architecture or existing code behavior, call out the conflict before making a broad structural change.
@@ -46,12 +46,12 @@
 - **Solution:** `OrderFlow.sln` (SDK pinned in `global.json`, 8.0.x)
 - **Restore:** `dotnet restore OrderFlow.sln`
 - **Build:** `dotnet build OrderFlow.sln -c Release`
-- **Test:** no test project yet. `dotnet test OrderFlow.sln` is a no-op until one is added.
+- **Test:** `dotnet test OrderFlow.sln -c Release` (xUnit + NSubstitute + EF Core InMemory, project `tests/OrderFlow.UnitTests`)
 - **Format check:** `dotnet format OrderFlow.sln --verify-no-changes` (no `.editorconfig` yet; not enforced in CI)
 - **Run API:** `dotnet run --project src/OrderFlow.Api` (applies migrations + seeds on startup)
 - **Benchmark:** `dotnet run -c Release --project tools/OrderFlow.Benchmark`
 - **New migration:** `dotnet ef migrations add <Name> -p src/OrderFlow.Infrastructure -s src/OrderFlow.Api`
-- **CI:** `.github/workflows/build.yml` — restore + Release build on PRs and pushes to `main`.
+- **CI:** `.github/workflows/ci.yml` (job `build-and-test`) — restore, Release build and unit tests on every PR and on every push/merge to `main`. `main` is protected: the job must pass before a PR can be merged.
 
 ## Implementation guidance
 
@@ -60,9 +60,9 @@
 3. Read only the relevant linked documentation.
 4. Make the smallest coherent change.
 5. Preserve existing contracts unless the request explicitly requires changing them.
-6. Add or update tests where a test project exists.
+6. Add or update unit tests for the changed behavior.
 7. Build the solution (`dotnet build OrderFlow.sln -c Release`).
-8. Run tests if any exist.
+8. Run `dotnet test OrderFlow.sln -c Release`.
 9. Add a sample request to `src/OrderFlow.Api/OrderFlow.Api.http` for new endpoints.
 10. Review the final diff and report any validation that could not be completed.
 
@@ -96,7 +96,7 @@ Prefer concrete findings with file/line references over general style commentary
 - The requested behavior is implemented.
 - The change follows the repository architecture and conventions.
 - No unrelated files were changed.
-- The solution builds in Release; tests pass (when present).
+- The solution builds in Release and all unit tests pass.
 - Docs updated (`README.md`, `ARCHITECTURE.md`, `PERFORMANCE.md`) when endpoints or behavior change.
 - No secrets introduced.
 - The final response summarizes the change and clearly states what was validated.

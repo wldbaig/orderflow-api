@@ -9,6 +9,7 @@
 
 ## Checklist
 - [ ] `dotnet build OrderFlow.sln -c Release` passes
+- [ ] `dotnet test OrderFlow.sln -c Release` passes; tests added/updated for changed behavior
 - [ ] Business rules stay inside the `Order` aggregate
 - [ ] No secrets in `appsettings*.json`
 - [ ] EF migration added (if schema changed)

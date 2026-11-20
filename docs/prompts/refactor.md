@@ -7,7 +7,7 @@
 
 - **Behavior-preserving by default.** Same routes, status codes, DTO shapes, and persisted data. If that can't hold, stop and flag it.
 - **Small, reversible steps.** Build after each step.
-- **Safety net first.** With no test project yet, add characterization tests (or document manual `.http` checks) before touching risky code.
+- **Safety net first.** Make sure `tests/OrderFlow.UnitTests` covers the code you touch; add characterization tests before refactoring if it doesn't.
 - **Stay in scope.** No feature work bundled in.
 - **Respect boundaries.** Keep changes within the right layer; don't hand-edit migration snapshots.
 

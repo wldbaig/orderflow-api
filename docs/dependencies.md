@@ -16,6 +16,7 @@
 | Infrastructure | EF Core 8.0.11 (+ SqlServer, Relational, Design), Microsoft.Extensions.Http.Polly 8.0.11 |
 | Api | Serilog.AspNetCore 8.0.3, Swashbuckle.AspNetCore 6.9.0, EF Core Design |
 | tools/OrderFlow.Benchmark | see its csproj |
+| tests/OrderFlow.UnitTests | xunit 2.9.2, xunit.runner.visualstudio, Microsoft.NET.Test.Sdk, NSubstitute 5.3.0, Microsoft.EntityFrameworkCore.InMemory 8.0.11, coverlet.collector (test-only) |
 
 Already-available capabilities — use these before adding a package:
 
