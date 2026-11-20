@@ -38,7 +38,7 @@
 
 ## Tests & performance
 
-- [ ] Changed behavior covered (when a test project exists) or manual verification described.
+- [ ] Changed behavior covered by unit tests in `tests/OrderFlow.UnitTests`.
 - [ ] Read-path / index / cache changes re-benchmarked and `PERFORMANCE.md` updated.
 
 ## Scope & safety
