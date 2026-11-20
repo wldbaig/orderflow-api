@@ -18,4 +18,4 @@ If you touch `OrderReadService`, indexes or caching, re-run `tools/OrderFlow.Ben
 and update `PERFORMANCE.md` with the new numbers.
 
 ## Working with AI agents
-Coding agents follow `AGENTS.md` and the rules in `docs/` (`CLAUDE.md` defers to it).
+Claude follows `CLAUDE.md` and the rules in `docs/`.
